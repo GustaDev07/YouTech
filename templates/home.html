@@ -1,0 +1,161 @@
+{% extends 'modelo.html' %}
+{% block conteudo %}
+
+<script src="https://kit.fontawesome.com/fe20a4b9a9.js" crossorigin="anonymous"></script>
+<!-- Carrossel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active ">
+            <img src="/static/img/Carousel animação/1.gif" class="d-block w-100 mb-5">
+        </div>
+        <div class="carousel-item">
+            <img src="/static/img/Carousel animação/2.gif" class="d-block w-100 mb-5" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
+
+</div>
+
+
+
+<main class="main-conteudo" style="background-color: aquamarine;">
+    <div>
+        <section class="container my-5">
+            <div class="row">
+                <div class="col-md-6 ">
+                    <h2 class="mb-4">Sobre Nós</h2>
+                    <p>
+                        A Youtech é uma empresa especializada em consultoria, desenvolvimento e suporte de Tecnologia da
+                        Informação na área comercial e industrial. Atuamos em todo o país, oferecendo soluções
+                        inovadoras e personalizadas para atender às necessidades específicas de nossos clientes.
+                    </p>
+                    <p>
+                        Com uma equipe experiente e dedicada, buscamos proporcionar excelência em serviços tecnológicos,
+                        impulsionando o crescimento e a eficiência de nossos parceiros de negócios. Nosso compromisso
+                        com a qualidade e a satisfação do cliente é a base de nossa atuação.
+                    </p>
+                    <p>
+                        Seja para otimizar processos, implementar novas tecnologias ou fornecer suporte contínuo, a
+                        Youtech está pronta para ser sua parceira estratégica em todas as questões relacionadas à
+                        Tecnologia da Informação. Entre em contato conosco para descobrir como podemos impulsionar o seu
+                        sucesso.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div><img src="/static/img/Imagens/working-home-allow-me-flexible-working.jpg" width="100%"
+                            height="220%"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+</main>
+<div class="box-busca container mt-2">
+    <div class="search-box">
+        <form method="post" action="/busca">
+            <div class="search-container">
+                <input role="search" type="text" class="search-box-input" name="buscar" placeholder="Pesquise sua vaga">
+                <button class="search-box-button" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"
+                        style="color: #ffffff; font-size: 25px; margin-top: 8px; display: flex; align-items: center; margin-left: 10px; margin-bottom: 2px;"></i>
+                </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .box-busca {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 999;
+    }
+
+    .search-box {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+    }
+
+    .search-container {
+        display: flex;
+        border-radius: 50px;
+        background-color: #ffffff;
+        height: 45px;
+    }
+
+    .search-box-input {
+        outline: 0;
+        font-size: 1.2em;
+        color: #000000;
+        width: 250px;
+        padding: 0 10px;
+        border: none;
+        background: none;
+        border: 1px solid #21a8fc;
+        border-radius: 22px;
+        margin-right: 2px;
+    }
+
+    .search-box-button {
+        display: flex;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        background-color: #21a8fc;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-box-icone {
+        margin: auto;
+        color: #ffffff;
+    }
+</style>
+<!-- Carrossel fim -->
+
+{% if not vagas %}
+<h1 class="text-center text-danger mt-5">
+    <div class="animation">Não há vagas cadastradas 🚫</div>
+</h1>
+
+{% else %}
+<div id="vagas" class="container my-5">
+    <div class="row g-3">
+        {% for vaga in vagas %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="card text-center bg-light">
+                <img src="../static/img/vagas/{{ vaga['img_vaga'] }}" class="card-img-top" />
+
+                <div class="card-body fs-5 fw-bold">
+                    Cargo: {{ vaga['cargo_vaga'] }}
+                    <br>
+                    Salário: {{ vaga['salario_vaga'] }}
+                </div>
+                <div class="card-footer">
+                    <a href="/vervaga/{{ vaga['id_vaga'] }}" style="text-decoration: none;">
+                        <button class="btn btn-primary text-light">Ver mais</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+FAZER FUNCIONAR A BARRA DE PESQUISA

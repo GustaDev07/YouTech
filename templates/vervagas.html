@@ -1,0 +1,59 @@
+{% extends 'modelo.html' %}
+{% block conteudo %}
+
+<script src="https://kit.fontawesome.com/fe20a4b9a9.js" crossorigin="anonymous"></script>
+<div class="container">
+  <div class="row justify-content-center">
+    {% for vaga in vagas %}
+    <h1 class="fs-2  my-4">Vaga: {{ vaga['cargo_vaga'] }}</h1>
+    <hr></hr>
+    <p class="fs-5">Descrição da Vaga: {{ vaga['requisitos_vaga'] }}</p>
+    <p class="fs-5">Período da Vaga: {{ vaga['periodo_vaga'] }}</p>
+    <p class="fs-5">Tipo de trabalho: {{ vaga['tipo_vaga'] }}</p>
+    <p class="fs-5">Local Vaga: {{ vaga['local_vaga'] }}</p>
+    <p class="fs-5">Salario da Vaga: R${{ vaga['salario_vaga'] }}</p>
+    <p class="fs-5"> Numero para Contato: {{ vaga['email_vaga'] }}</p>
+
+
+
+      {% endfor %}
+    </div>
+    <a href="/">
+    <button id="btn">Voltar</button>
+    </a>
+<style>
+  button {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #000;
+  text-shadow: none;
+  background: transparent;
+  box-shadow: transparent;
+  border: 1px solid #000;
+  transition: 0.5s ease;
+  user-select: none;
+  margin-left: 45%;
+  margin-top: 5%;
+  margin-bottom: 8%;
+}
+
+#btn:hover,:focus {
+  color: #000;
+  background: #00F5FF;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff,
+              0 0 10px #ffffff,
+              0 0 20px #ffffff;
+  box-shadow: 0 0 5px #008cff,
+              0 0 20px #008cff,
+              0 0 50px #008cff,
+              0 0 100px #008cff;
+}
+</style>
+  </div>
+
+
+{% endblock %}

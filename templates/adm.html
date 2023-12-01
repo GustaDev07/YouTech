@@ -1,0 +1,43 @@
+{% extends 'modelo.html' %}
+{% block conteudo %}
+
+{% if not vagas %}
+<h1 class="text-center text-danger mt-5">
+    <div class="animation">Não há vagas cadastradas 🚫</div>
+</h1>
+{% else %}
+<div class="container text-center mt-5">
+    <div class="row g-3 d-flex justify-content-evenly">
+        {% for vaga in vagas %}
+        <div class="card col-12 col-md-10 col-lg-5 border border-dark-subtle">
+            <div class="card-header">
+                <img src="../static/img/vagas/{{ vaga['img_vaga'] }}" class="card-img-top" />
+            </div>
+            <div class="card-body p-2">
+                <h4 class="text-back">Cargo: {{ vaga['cargo_vaga'] }}</h4>
+                <h5 class="text-black" style="word-wrap: break-word;">Requisitos: {{ vaga['requisitos_vaga'] }}</h5>
+                <p class="text-black fs-5" style="word-wrap: break-word;">Período: {{ vaga['periodo_vaga'] }}</p>
+                <p class="text-black fs-5" style="word-wrap: break-word;">Tipo da vaga: {{ vaga['tipo_vaga'] }}</p>
+                <p class="text-black fs-5" style="word-wrap: break-word;"> Local da vaga:{{ vaga['local_vaga'] }}</p>
+                <p class="text-black fs-5" style="word-wrap: break-word;">Salário: R${{ vaga['salario_vaga'] }}</p>
+                <p class="text-black fs-5" style="word-wrap: break-word;">Email do proprietário: {{ vaga['email_vaga']
+                    }}</p>
+            </div>
+            <div class="card-footer p-2">
+                <a href="/editvagas/{{ vaga['id_vaga'] }}"><i class="bi bi-pencil-square fs-3"></i></a>
+                <a href="/excluir/{{ vaga['id_vaga'] }}"
+                    onclick="return confirm('Você tem certeza de que deseja excluir essa vaga?')"><i
+                        class="bi bi-trash3 fs-3 ms-5"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="container text-center mt-5">
+    <button type="button" onclick="window.location.href='/cadvagas'"
+        class="btn btn-lg btn-success  mx-5">Cadastrar</button>
+    <button type="button" onclick="window.location.href='/logout'" class="btn btn-lg btn-danger  mx-5">Sair</button>
+</div>
+{% endblock %}
